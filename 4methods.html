@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="main">
+      <div>{{num1}} 곱하기 {{num2}}은?</div>
+      <form v-on:submit="onSubmitForm" name="gugudan">
+        <input type="text" v-model="value" ref="answer" />
+        <button type="submit">정답입력</button>
+      </form>
+      <div>{{message}}</div>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#main",
+        data: {
+          num1: Math.ceil(Math.random() * 9),
+          num2: Math.ceil(Math.random() * 9),
+          message: "정답 또는 땡",
+          value: "",
+        },
+        methods: {
+          onSubmitForm(e) {
+            e.preventDefault();
+            if (this.num1 * this.num2 === parseInt(this.value)) {
+              this.message = "정답";
+              this.num1 = Math.ceil(Math.random() * 9);
+              this.num2 = Math.ceil(Math.random() * 9);
+              this.value = "";
+              this.$refs.answer.focus();
+            } else {
+              this.message = "땡";
+              this.$refs.answer.focus();
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

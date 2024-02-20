@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css" >
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+	</head>
+	
+	<body>
+		<h2>입력폼 활용</h2>
+		<div id="app">
+			이름 : <input v-model.lazy="myName" placeholder="이름"> <br />
+
+			좋아하는 색은 : <br />
+			<label><input type="radio" value="red" v-model="myChecks">
+				빨강</label><br>
+			<label><input type="radio" value="green" v-model="myChecks">
+				녹색</label><br>
+			<label><input type="radio" value="blue" v-model="myChecks">
+				파랑색</label><br>
+			<label><input type="radio" value="yellow" v-model="myChecks">
+				노란색</label><br>
+			<label><input type="radio" value="gray" v-model="myChecks">
+				회색</label><br>
+
+			취미는?<br>
+			<label>
+				<input type="checkbox" value="등산" v-model="myHobby"> 등산
+			</label><br>	
+			<label>
+				<input type="checkbox" value="피아노" v-model="myHobby"> 피아노
+			</label><br>
+			<label>
+				<input type="checkbox" value="독서" v-model="myHobby"> 독서
+			</label><br>
+
+			<p v-bind:style="{color : myChecks}">내 이름은 {{ myName }} 이고 좋아하는 색은 {{myChecks}} 이고, 취미는 <span v-for="(item, index) in myHobby" style="padding-right:0.5em">{{ item }}</span>입니다.</p>
+			
+		</div>
+		
+		<script>
+			new Vue({
+				el: '#app',
+				data: {
+					myName:'',
+					myChecks:'',
+					myHobby:[]
+				}
+			})
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex@2.0.0"></script>
+</head>
+<body>
+    
+    <div id="app">
+        <count-comp title="카운터1"></count-comp>
+        <count-comp title="카운터2"></count-comp>
+        <count-comp title="카운터3"></count-comp>
+    </div>
+
+    <script>
+        const store = new Vuex.Store({
+            state:{
+                count : 0
+            },
+            mutations:{
+                fnIncData(state){
+                    return state.count++
+                },
+                fnDecData(state){
+                    return state.count--
+                }
+            },
+            getters:{
+                fnGetData(state){
+                    return state.count
+                }
+            }
+        })
+
+        Vue.component('count-comp',
+            {
+                props:['title'],
+                template:`
+                    <div>
+                        <h1>{{ title }}</h1>
+                        <p>카운터 : {{ fnGetCount }} </p>
+                        <button @click="fnIncrement">+1 증가</button>
+                        <button @click="fnDecrement">-1 감소</button>
+                    </div>
+                `,
+                computed:{
+                    fnGetCount(){
+                        return store.getters.fnGetData
+                    }
+                },
+                methods:{
+                    fnIncrement(){
+                        store.commit('fnIncData')
+                    },
+                    fnDecrement(){
+                        store.commit('fnDecData')
+                    }   
+                }
+            }
+        )
+
+        new Vue({
+            el:'#app',
+            store
+        })
+    </script>
+
+</body>
+</html>

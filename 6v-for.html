@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="main">
+      <h1>좋아하는 과일은?</h1>
+      <ul>
+        <li v-for="(value, index) in myFavoriteFruits">
+          {{index+1}}. {{value.name}} : {{ value.price}}원
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      // let myFavoriteFruits = ["사과", "파인애플", "바나나"];
+      // let list = "";
+      // myFavoriteFruits.map((value, index) => {
+      //   list += `<li>${index}. ${value}</li>`;
+      // });
+      // let ul = document.querySelector("#main ul");
+      // ul.innerHTML = list;
+
+      new Vue({
+        el: "#main",
+        data: {
+          myFavoriteFruits: [
+            { name: "사과", price: 3500 },
+            { name: "파인애플", price: 5000 },
+            { name: "바나나", price: 10000 },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>

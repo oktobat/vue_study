@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{sTitle1}}</h1>
+      <button @click="fnChangeTitle">눌러주세요.</button>
+      <!-- <button v-on:click="fnChangeTitle">눌러주세요.</button> -->
+    </div>
+
+    <!-- 눌러주세요를 클릭하면 sTitle 데이터가 'Hello'로 변경되게 하시오. 함수명은 fnChangeTitle -->
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          sTitle1: "안녕하세요.",
+          sTitle2: "Hello",
+        },
+        methods: {
+          fnChangeTitle() {
+            let temp = this.sTitle1;
+            this.sTitle1 = this.sTitle2;
+            this.sTitle2 = temp;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

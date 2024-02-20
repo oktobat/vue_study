@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        filters 함수 : 값을 받아 형식화된 값을 출력하는 함수
+        {{  값 | 함수 }}
+
+        filters : {
+            함수(값을 받는 매개변수) {
+                값을 형식화하는 코드 작성
+            }
+        }
+    -->
+
+    <div id="app">
+        <input type="text" v-model="message">
+        <p>{{ message | capitalize }}</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                message:''
+            },
+            filters:{
+                capitalize(value){
+                    if (!value) return ''
+                    value = value.toString()
+                    return value.charAt(0).toUpperCase() + value.slice(1)
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

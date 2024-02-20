@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    
+    <div id="myCalc">
+        <p>x <input class="calc-x-input" value="0"></p>
+        <p>y <input class="calc-y-input" value="0"></p>
+        <p>--------------------</p>
+        <p>= <span class="calc-result"></span></p>
+    </div>
+
+    <script>
+        let xinput = $('input.calc-x-input')
+        let yinput = $('input.calc-y-input')
+        let result = $('span.calc-result')
+        let x = 0, y = 0, newresult = 0;
+        result.text(newresult)
+
+        function isNotNumericValue(value) {
+            return isNaN(value) || !isFinite(value);
+        }
+
+        xinput.on('keyup', function(){
+            x = parseFloat(xinput.val())
+            y = parseFloat(yinput.val())
+            if(isNotNumericValue(x)) return newresult
+            calc(x, y)
+        })
+        yinput.on('keyup', function(){
+            x = parseFloat(xinput.val())
+            y = parseFloat(yinput.val())
+            if(isNotNumericValue(y)) return newresult
+            calc(x, y)
+        })
+
+        function calc(x, y) {
+            newresult = x+y;
+            result.text(newresult)
+        }
+    </script>
+
+</body>
+</html>

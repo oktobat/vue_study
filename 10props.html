@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      .fruit_style {
+        border: 1px solid #ccc;
+        background-color: white;
+        padding-left: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <h1>{{ sTitle }}</h1>
+      <favorite-fruits
+        v-for="item in aFruits"
+        v-bind:fruit-name="item"
+      ></favorite-fruits>
+    </div>
+
+    <script>
+      // DOM 영역에서는 모든 이름을 케밥(-) 케이스를 사용
+      // Vue.component() 에서는 컴포넌트명은 카멜(파스칼), 케밥 다 가능하며,
+      // props 명은 카멜(파스칼) 케이스만 가능
+      // 상위에 있는 데이터를 하위 컴포넌트에서 사용하려면 props가 필요함
+
+      Vue.component("favorite-fruits", {
+        props: ["fruitName"],
+        template: `
+          <div class="fruit_style">
+            <p>좋아하는 과일 : {{ fruitName }} </p>
+          </div>
+      `,
+      });
+
+      new Vue({
+        el: "#main",
+        data: {
+          sTitle: "안녕하세요.",
+          aFruits: ["사과", "오렌지", "수박"],
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css" >
+		<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script> -->
+		<!-- https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=horajjan&logNo=220463053828 -->
+	</head>
+
+	<body>
+		<h2>JSON을 읽어 들이는 예제（JavaScript）</h2>
+		<input type="file" id="loader">
+		<p></p>
+
+		<script>
+			var obj1 = document.getElementById("loader");
+			obj1.addEventListener("change", loadFile, false);
+			function loadFile(e) {
+				let file = e.target.files[0]
+				if (file) {
+					var reader = new FileReader();   
+					reader.onload = function(e){     
+						console.log(">>>"+e.target.result);
+						json = JSON.parse(e.target.result);
+						console.log(json)
+						console.log(">>>"+ json[0].title);
+						console.log(">>>"+ json[0].body);
+						document.querySelector('p').textContent = JSON.stringify(json)
+					}
+					reader.readAsText(file);        // readAsText(문자열텍스트), readAsDataURL(url이 포함된 문자열)
+				}
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="main">
+      <p>원본문장 : "{{sOriginalMessage}}"</p>
+      <p>대문자로 변환된 문장 : "{{ fnUpperCaseMsg }}"</p>
+    </div>
+
+    <div id="main2">
+      <p>클릭숫자: {{ nClicks }}</p>
+      <p>카운트다운 : {{ fnCounter }}</p>
+      <button v-on:click="fnIncrement">눌러주세요!</button>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#main",
+        data: {
+          sOriginalMessage: "How are you?",
+        },
+        computed: {
+          fnUpperCaseMsg() {
+            return this.sOriginalMessage.toUpperCase();
+          },
+        },
+      });
+
+      new Vue({
+        el: "#main2",
+        data: {
+          nClicks: 0,
+        },
+        methods: {
+          fnIncrement() {
+            this.nClicks++;
+            if (this.nClicks === 11) {
+              this.nClicks = 0;
+            }
+          },
+        },
+        computed: {
+          fnCounter() {
+            return 10 - this.nClicks;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        참고사이트 : https://simplevue.gitbook.io/intro/
+        1. node.js 설치 
+           https://nodejs.org/ko/ 에서 LTS 버젼 설치
+           브라우저에서만 실행했던 자바스크립트를 서버를 비롯한 다양한 환경에서 실행할 수 있는 환경을 제공
+           노드는 자바스크립트 프로그램을 컴퓨터(터미널)에서 실행할 수 있게 하는 자바스크립트 실행기
+           서버사이트 스크립트 언어가 아니라, 프로그램을 실행할 수 있는 환경(런타임)
+           node 환경에서 자바스크립트로 서버까지 만들 수 있게 됨. 한 가지 언어로 프론트엔드, 백엔드 프로그램이 가능해짐
+           설치확인 node -v  
+        2. Vue CLI 설치(기본 vue 개발 환경을 설정해주는 도구)
+           
+           윈도우 사용자
+           npm install -g @vue/cli  
+           
+           맥사용자
+           sudo npm install -g @vue/cli  - Password는 본인 맥 비밀번호 
+
+           npm(Node Package Manager)은 Node.js에서 사용할 수 있는 모듈(자바스크립트 라이브러리)들을 패키지화하여 관리함
+           
+        3. 설치확인
+           vue --version
+           만약 오류가 뜨면 윈도우 PowerShell 창에서 경로에 상관없이 아래 코드 입력
+           PowerShell 창을 열려면 화면 왼쪽 아래 윈도우 아이콘 옆에 검색창에 PowerShell 입력하여 찾음
+           PS C:\\WINDOWS\system32> Get-ExecutionPolicy
+           Restricted
+           PS C:\\WINDOWS\system32> Set-ExecutionPolicy RemoteSigned
+           Y 선택 
+           PS C:\\WINDOWS\system32> Get-ExecutionPolicy
+
+        4. Vue 프로젝트 생성하기
+           vue create 프로젝트명(Default Vue2 선택)
+           cd 프로젝트명
+           npm run serve 
+           localhost 8080을 컨트롤키 누르고 클릭하면 브라우저에서 열림
+           실행중인 vue를 종료하려면 터미널에서 Ctrl + C 클릭
+
+        5. VSC에서 확장프로그램 설치 : Vue VSCode Snippets, ESLint
+           ESLint 설치 후 생기는 오류 해결
+           설정아이콘 클릭 - 설정 클릭 - 오른쪽 위에 설정열기(JSON) 클릭하면 settings.json 파일이 열림
+           { 
+               맨 아래에 아래 코드 추가
+               "eslint.workingDirectories": [
+                  {"mode": "auto"}
+               ],
+           }
+        6. SFC(Single File Components) : HTML, CSS, JS를 단일 파일에서 캡슐화
+           단축키로 SFC 구성하기 : vbase
+
+        7. 웹폰트 아이콘 적용하기
+           npm install --save @fortawesome/fontawesome-free
+           main.js 파일에  import '@fortawesome/fontawesome-free/css/all.min.css'
+           혹은 index.html 파일에 <link rel="stylesheet" href="https.fontawesome.com/releases/v6.0.0/css/all.css">
+
+        8. scss 사용하기
+           npm install sass-loader sass webpack --save-dev
+           <style lang="scss" scoped>
+
+        9. vuex 사용하기
+           npm install --save  vuex@3.6.2  vue-router@3.5.4
+     -->
+</body>
+</html>
