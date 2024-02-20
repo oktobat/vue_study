@@ -1,31 +1,43 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Vue.js sample</title>
-		<link rel="stylesheet" href="style.css" >
-		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
-	</head>
-	
-	<body>
-		<h2>[Enter] 키를 누르면(keyup.enter) 얼럿을 표시하는 예제</h2>
-		<div id="app">
-			<input v-on:keyup.enter="showAlert" v-model="myText">
-			<p>{{ myText }}</p>
-		</div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  </head>
 
-		<script>
-			new Vue({
-				el: '#app',
-				data: {
-					myText: 'Hello!'
-				},
-				methods: {
-					showAlert: function() {
-						alert("Enter키를 눌렀습니다.");
-					}				
-				}
-			})
-		</script>
-	</body>
+  <body>
+    <h2>[Enter] 키를 누르면(keyup.enter) 얼럿을 표시하는 예제</h2>
+    <!-- 이벤트 수식어
+		@keyup.enter : enter키
+    @keyup.space : space키
+		@keydown.tab : tab키
+		@keydown.esc : esc키
+		@click.left : 마우스왼쪽 버튼
+		@click.right : 마우스오른쪽 버튼
+		@click.right.prevent : 마우스오른쪽버튼 클릭 방지
+		@click.alt : 알트키 클릭
+		@click.stop : 이벤트 전파 방지
+		@click.prevent : 기본이벤트 방지
+	 -->
+    <div id="app">
+      <input @keyup.enter="showAlert" v-model="myText" />
+      <p>{{ myText }}</p>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          myText: "Hello!",
+        },
+        methods: {
+          showAlert() {
+            alert("Enter키를 눌렀습니다.");
+          },
+        },
+      });
+    </script>
+  </body>
 </html>

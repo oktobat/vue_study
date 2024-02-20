@@ -1,45 +1,46 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Vue.js sample</title>
-		<link rel="stylesheet" href="style.css" >
-		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
-	</head>
-	
-	<body>
-		<h2>문장을 입력하면 남은 글자수를 표시하는 예제</h2>
-		<div id="app">
-			<p>감상은 30자 이내로 입력해 주세요.</p>
-			<textarea  v-model="myText" maxlength="30"></textarea>
-			<p v-bind:style="{color: computedColor}">남은 글자는 {{ remaining }} 입니다.</p>
-		</div>
-		<script>
-			new Vue({
-				el: '#app',
-				data: { myText:'' },
-				computed: {
-					// myText의 길이가 변하면 남은 글자수를 계산한다.
-					remaining: function() {
-						return 30 - this.myText.length
-					},
-					// remaining이 변하면 computedColor을 계산한다.
-					// 기본색상은 green
-					// 20 이하이면 글자색상 orange
-					// 1 이하이면 글자색상 red
-					computedColor: function() {
-						let col = 'green'
-						if ( this.remaining <= 20 ) {
-							col = 'orange'
-						}
-						if ( this.remaining <= 1 ) {
-							col = 'red'
-						}
-						return col
-					}
-				}
-			})
-		</script>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  </head>
 
-	</body>
+  <body>
+    <h2>문장을 입력하면 남은 글자수를 표시하는 예제</h2>
+    <div id="app">
+      <p>감상은 30자 이내로 입력해 주세요.</p>
+      <textarea v-model="myText" maxlength="30"></textarea>
+      <p v-bind:style="{color: computedColor}">
+        남은 글자는 {{ remaining }} 입니다.
+      </p>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: { myText: "" },
+        computed: {
+          // myText의 길이가 변하면 남은 글자수를 계산한다.
+          remaining() {
+            return 30 - this.myText.length;
+          },
+          // remaining이 변하면 computedColor을 계산한다.
+          // 기본색상은 green
+          // 20 이하이면 글자색상 orange
+          // 1 이하이면 글자색상 red
+          computedColor() {
+            let col = "green";
+            if (this.remaining <= 20) {
+              col = "orange";
+            }
+            if (this.remaining <= 1) {
+              col = "red";
+            }
+            return col;
+          },
+        },
+      });
+    </script>
+  </body>
 </html>

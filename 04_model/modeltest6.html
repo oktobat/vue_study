@@ -1,45 +1,40 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Vue.js sample</title>
-		<link rel="stylesheet" href="style.css" >
-		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
-	</head>
-	
-	<body>
-		<h2>선택한 라디오 버튼을 표시하는 예제</h2>
-		<div id="app">
-			<h2>당신의 성별은?</h2>
-			<p>
-				<label>
-					남 <input type="radio" value="m" v-model="gender">
-				</label>
-				<label>
-					여 <input type="radio" value="w" v-model="gender">
-				</label>
-			</p>
-			<h2>좋아하는 색상은?</h2>
-			<p>
-				<label><input type="radio" value="red" v-model="picked">
-					적</label><br>
-				<label><input type="radio" value="green" v-model="picked">
-					녹</label><br>
-				<label><input type="radio" value="blue" v-model="picked">
-					청</label><p>
-				{{ picked }} 이 선택됨
-			</p>
-		</div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  </head>
 
-		<script>
-			new Vue({
-				el: '#app',
-				data: {
-					picked: 'red',
-					gender: 'm'
-				}
-			})
-		</script>
+  <body>
+    <h2>선택한 라디오 버튼을 표시하는 예제</h2>
+    <div id="app">
+      <h2>당신의 성별은?</h2>
+      <p>
+        <label> 남 <input type="radio" value="m" v-model="gender" /> </label>
+        <label> 여 <input type="radio" value="w" v-model="gender" /> </label>
+      </p>
+      <h2>좋아하는 색상은?</h2>
+      <p>
+        <label><input type="radio" value="red" v-model="picked" /> 적</label
+        ><br />
+        <label><input type="radio" value="green" v-model="picked" /> 녹</label
+        ><br />
+        <label><input type="radio" value="blue" v-model="picked" /> 청</label>
+      </p>
 
-	</body>
+      <p :style="{color:picked}">{{ picked }} 이 선택됨</p>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          picked: "",
+          gender: "m",
+        },
+      });
+    </script>
+  </body>
 </html>

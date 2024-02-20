@@ -10,7 +10,7 @@
   <body>
     <div id="main">
       <div>{{num1}} 곱하기 {{num2}}은?</div>
-      <form v-on:submit="onSubmitForm" name="gugudan">
+      <form v-on:submit.prevent="onSubmitForm" name="gugudan">
         <input type="text" v-model="value" ref="answer" />
         <button type="submit">정답입력</button>
       </form>
@@ -27,8 +27,7 @@
           value: "",
         },
         methods: {
-          onSubmitForm(e) {
-            e.preventDefault();
+          onSubmitForm() {
             if (this.num1 * this.num2 === parseInt(this.value)) {
               this.message = "정답";
               this.num1 = Math.ceil(Math.random() * 9);

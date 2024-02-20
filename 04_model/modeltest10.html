@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Vue.js sample</title>
-		<link rel="stylesheet" href="style.css" >
-		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
-	</head>
-	
-	<body>
-		<h2>다 쓴 후 엔터키를 눌르면 입력됨</h2>
-		<div id="app">
-			<input v-model.lazy="myText">
-			<p>입력후 표시「{{ myText }}」</p>
-		</div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  </head>
 
-		<script>
-			new Vue({
-				el: '#app',
-				data: {
-					myText:''
-				}
-			})
-		</script>
-	</body>
+  <body>
+    <h2>다 쓴 후 엔터키를 눌르면 한꺼번에 입력되게 하는 수정자 lazy</h2>
+    <div id="app">
+      <input type="text" v-model.lazy="myText" />
+      <p>입력후 표시「{{ myText }}」</p>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          myText: "",
+        },
+      });
+    </script>
+  </body>
 </html>

@@ -24,13 +24,13 @@
 		</style>
 
 		<div id="app">
-			<p><a v-bind:href="naver_link">네이버로 연결</a></p>
+			<p><a :href="naver_link" target="_blank">네이버로 연결</a></p>
 			<p><img :src="face2_name">face2.png 표시</img></p>
 			<p :align="align_left">텍스트를 왼쪽 정렬</p>
 			<p :align="align_right">텍스트를 오른쪽 정렬</p>
 			<p :align="align_center">텍스트를 가운데 정렬</p>
-			<p v-bind:style="{ color: inline_font_red }">인라인 스타일로 글자색을 빨간색으로</p>
-			<p v-bind:style="{ color: inline_font_red, fontSize : inline_size_150 }">인라인 스타일로 글자크기를 150% 크게 빨간색으로</p>
+			<p :style="{ color: inline_font_red }">인라인 스타일로 글자색을 빨간색으로</p>
+			<p :style="{ color: inline_font_red, fontSize : inline_size_150 }">인라인 스타일로 글자크기를 150% 크게 빨간색으로</p>
 			<p :style="{ color: inline_font_red, fontSize : inline_size_150, backgroundColor : inline_background}">
 				인라인 스타일로 글자크기를 150% 크게 빨간색으로 배경은 노란색으로</p>
 			<p :class="blue_underline_class">blue-underline class 지정</p>

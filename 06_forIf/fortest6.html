@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Vue.js sample</title>
-		<link rel="stylesheet" href="style.css" >
-		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
-	</head>
-	
-	<body>
-		<h2>버튼을 클릭하면 소트하는 예제</h2>
-		<div id="app">
-			<ul>
-				<li v-for="item in myArray"> {{ item }}</li>
-			</ul>
-			<button v-on:click="sortData(myArray)">소트</button><br>
-		</div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  </head>
 
-		<script>
-			new Vue({
-				el: '#app',
-				data: {
-					myArray: ['a','c','b','e','d']
-				},
-				methods: {
-					sortData: function(listdata) {
-						listdata.sort(function(a,b) {
-							return (a < b ? -1 : 1);
-						});
-					}
-				}
-			})
-		</script>
-	</body>
+  <body>
+    <h2>버튼을 클릭하면 소트하는 예제</h2>
+    <div id="app">
+      <ul>
+        <li v-for="item in myArray">{{ item }}</li>
+      </ul>
+      <button v-on:click="sortDataAsc(myArray)">오름차순</button><br />
+      <button v-on:click="sortDataDesc(myArray)">내림차순</button><br />
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          //   myArray: ["a", "c", "b", "e", "d"],
+          myArray: [3, 1, 5, 2, 4],
+        },
+        methods: {
+          sortDataAsc(listdata) {
+            // 오름차순은 함수를 안써도 됨.
+            // listdata.sort()
+            listdata.sort(function (a, b) {
+              return a < b ? -1 : 1;
+            });
+          },
+          sortDataDesc(listdata) {
+            listdata.sort(function (a, b) {
+              return a > b ? -1 : 1;
+            });
+          },
+        },
+      });
+    </script>
+  </body>
 </html>
