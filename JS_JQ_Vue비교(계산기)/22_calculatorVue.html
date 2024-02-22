@@ -1,45 +1,57 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Vue.js 계산기</title>
-  <meta charset="UTF-8">
-  <style>
-    p, input { font-family: monospace; }
-    p { white-space: pre; }
-  </style>
-</head>
-<body>
-  <div id="app">
-    <p>x <input v-model="x"></p>
-    <p>y <input v-model="y"></p>
-    <p>---------------------</p>
-    <p>= <span v-text="result"></span></p>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-  <script type="text/javascript">
-  function isNotNumericValue(value) {
-    return isNaN(value) || !isFinite(value);
-  }
-    var calc = new Vue({
-      el: '#app',
-      data: { x: 0, y: 0, lastResult: 0 },
-      computed: {
-        result: function() {
-          let x = parseFloat(this.x);
-          if(isNotNumericValue(x))
-          return this.lastResult;
-
-          let y = parseFloat(this.y);
-          if(isNotNumericValue(y))
-          return this.lastResult;
-
-          this.lastResult = x + y;
-
-          return this.lastResult;
-        }
+  <head>
+    <title>Vue.js 계산기</title>
+    <meta charset="UTF-8" />
+    <style>
+      p,
+      input {
+        font-family: monospace;
       }
-    });
-  </script>
-</body>
+      p {
+        white-space: pre;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <p>x <input v-model.number="x" /></p>
+      <p>y <input v-model.number="y" /></p>
+      <p>---------------------</p>
+      <p>= <span>{{ result }}</span></p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      // 입력된 값이 문자이면 true를 return 하고
+      // 정상 숫자이면 false를 return 하는 프로그램
+      function isNotNumericValue(value) {
+        return isNaN(value) || !isFinite(value);
+        // || : 앞의 조건이 참이면 뒤에 조건을 판단하지 않음
+        // && : 앞의 조건이 거짓이면 뒤에 조건을 판단하지 않음
+        // isNaN(값) : 값이 숫자이면 false, 숫자가 아니면 true
+        // isFinite(값) : 값이 무한대이거나 NaN 이면 false이고, 정상값일때 true
+      }
+      new Vue({
+        el: "#app",
+        data: { x: 0, y: 0, lastResult: 0 },
+        computed: {
+          result() {
+            let x = parseFloat(this.x);
+            if (isNotNumericValue(x)) {
+              this.lastResult = 0;
+              return this.lastResult;
+            }
+            let y = parseFloat(this.y);
+            if (isNotNumericValue(y)) {
+              this.lastResult = 0;
+              return this.lastResult;
+            }
+            this.lastResult = x + y;
+            return this.lastResult;
+          },
+        },
+      });
+    </script>
+  </body>
 </html>

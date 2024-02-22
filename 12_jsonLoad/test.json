@@ -1,5 +1,5 @@
 [
-	{"title":"A","body":"a"},
-	{"title":"B","body":"b"},
-	{"title":"C","body":"c"}
+  { "title": "김은영", "body": "a" },
+  { "title": "홍길동", "body": "b" },
+  { "title": "장나라", "body": "c" }
 ]

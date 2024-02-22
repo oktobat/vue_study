@@ -43,7 +43,8 @@
       </p>
 
       <p>
-        {{ todos.length }}건 중 {{ remaining }}건 처리, {{overdate}} 완료일 지남
+        {{ todos.length }}건 중 {{ remaining }}건 처리, {{overdate}}건 완료일
+        지남
       </p>
     </div>
 
@@ -57,13 +58,20 @@
             { done: false, text: "빵사기", DueDate: "20240301" },
             { done: false, text: "커피사기", DueDate: "20240302" },
             { done: false, text: "공부하기", DueDate: "20240229" },
-            { done: false, text: "놀기", DueDate: "20240222" },
-            { done: false, text: "영화보기", DueDate: "20240228" },
+            { done: false, text: "놀기", DueDate: "20240221" },
+            { done: false, text: "영화보기", DueDate: "20240220" },
           ],
         },
         computed: {
           remaining() {
             return this.todos.filter((val) => val.done).length;
+          },
+          overdate() {
+            return this.todos.filter((val) => {
+              let today = new Date();
+              let due_date = this.dateChange(today);
+              return val.DueDate < due_date;
+            }).length;
           },
         },
         methods: {
