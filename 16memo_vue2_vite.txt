@@ -1,0 +1,24 @@
+Vue2에서 vue-cli 대신 Vite 사용하기
+1. 프로젝트 폴더를 생성할 위치 선정
+2. npm create vite@latest
+3. Project name : todo-vuex
+4. Select a framework : Vue
+5. Select a variant : JavaScript
+6. cd todo-vuex
+7. package.json의 버젼을 vue2로 변경
+   "vue" : "^2.7.14",
+   "vite" : "^3.2.3"
+8. npm install
+9. npm remove @vitejs/plugin-vue 혹은 npm remove @vitejs/plugin-vue --legacy-peer-deps
+10. npm add vite-plugin-vue2 -D
+11. vite.config.js 파일 수정
+    import { defineConfig } from 'vite';
+    import { createVuePlugin } from 'vite-plugin-vue2';
+
+    export default defineConfig({
+    plugins: [createVuePlugin()],
+    });
+12. 기존 todo 프로젝트에서 작성했던 파일 복사하고 추가로 설치했던 npm 설치
+    npm i --save @fortawesome/fontawesome-free
+    npm i sass-loader sass -D
+13. npm i --save  vuex@3.6.2
