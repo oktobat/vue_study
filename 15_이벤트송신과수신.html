@@ -18,13 +18,13 @@
     
     <div id="app2">
         <ul>
-            <item-list v-for="item in groceryList" v-bind:item-props="item" v-bind:key="item.id" v-on:price-up="priceChange(item.id)"></item-list>
+            <item-list v-for="item in groceryList" v-bind:item-props="item" v-bind:key="item.id" @price-up="priceChange(item.id)"></item-list>
        </ul>
     </div>
 
     <div id="app3">
         <ol>
-            <item-list v-for="item in fruitsList" v-bind:item-props="item"  v-bind:key="item.id" v-on:price-up="priceChange(item.id)"></item-list>
+            <item-list v-for="item in fruitsList" :item-props="item"  v-bind:key="item.id" @price-up="priceChange(item.id)"></item-list>
         </ol>
     </div>
 
@@ -37,6 +37,8 @@
                 template:'<li @click="priceUp">{{ itemProps.text }} : {{ itemProps.price }}</li>',
                 methods:{
                     priceUp(){
+                        // 하위컴포넌트에서 발생한 이벤트를 상위컴포넌트에 전달하는 방법
+                        // this.$emit('이벤트를 담을 그릇 이름')
                         this.$emit('price-up')
                     }
                 }
@@ -54,7 +56,12 @@
             },
             methods:{
                 priceChange(id){
-                    this.groceryList[id].price += 100
+                    // this.groceryList[id].price += 100
+                    this.groceryList.map((item)=>{
+                        if (item.id==id) {
+                            item.price += 100
+                        }
+                    })
                 }
             }
         })
@@ -70,7 +77,12 @@
             },
             methods:{
                 priceChange(id){
-                    this.fruitsList[id].price += 100
+                    // this.fruitsList[id].price += 100
+                    this.fruitsList.map((item)=>{
+                        if (item.id==id) {
+                            item.price += 100
+                        }
+                    })
                 }
             }
         })

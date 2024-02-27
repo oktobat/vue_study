@@ -11,17 +11,20 @@
 <body>
     
     <div id="app">
-        <count-comp title="카운터1"></count-comp>
-        <count-comp title="카운터2"></count-comp>
-        <count-comp title="카운터3"></count-comp>
+        <count-comp no="1"></count-comp>
+        <count-comp no="2"></count-comp>
+        <count-comp no="3"></count-comp>
     </div>
 
     <script>
         const store = new Vuex.Store({
             state:{
-                count : 0
+                count : 0,
+                name : '카운터'
             },
             mutations:{
+                // store에 있는 state 값을 변경시키는 역할을 함
+                // parameter명은 state여야 함
                 fnIncData(state){
                     return state.count++
                 },
@@ -30,18 +33,23 @@
                 }
             },
             getters:{
+                // parameter명은 state여야 함
                 fnGetData(state){
                     return state.count
+                },
+                fnGetTitle(state){
+                    return state.name
                 }
             }
         })
 
+
         Vue.component('count-comp',
             {
-                props:['title'],
+                props:["no"],
                 template:`
                     <div>
-                        <h1>{{ title }}</h1>
+                        <h1>{{ fnGetName }} {{ no }}</h1>
                         <p>카운터 : {{ fnGetCount }} </p>
                         <button @click="fnIncrement">+1 증가</button>
                         <button @click="fnDecrement">-1 감소</button>
@@ -49,7 +57,10 @@
                 `,
                 computed:{
                     fnGetCount(){
-                        return store.getters.fnGetData
+                          return store.getters.fnGetData
+                    },
+                    fnGetName(){
+                        return store.getters.fnGetTitle
                     }
                 },
                 methods:{

@@ -26,6 +26,7 @@
      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
      <script>
 
+        // 이벤트들을 전역에서 관리하기 위한 이벤트버스 생성
         const eventBus = new Vue({})
 
         new Vue({
@@ -35,7 +36,7 @@
             },
             methods:{
                 send(){
-                    // eventBus.$emit('이벤트를 담는 그릇', 데이터)
+                    // 이벤트 발행 : eventBus.$emit('이벤트를 담는 그릇', 데이터)
                     eventBus.$emit('send-num', ++this.count)
                 }
             }
@@ -43,18 +44,15 @@
 
         new Vue({
             el:"#app2",
+
             data:{
                 num:''
             },
-            // methods:{
-            //     receive(count){
-            //         this.num = count
-            //     }
-            // },
-            created:function(){  // vue 인스턴스가 생성되자마자 실행되는 함수
-                // eventBus.$on('이벤트를 담은 그릇', 데이터를 받아서 할일)
-                eventBus.$on('send-num', (count)=>{
-                   this.num = count
+
+            created(){  // vue 인스턴스가 생성되자마자 실행되는 함수
+                // 이벤트 구독 : eventBus.$on('이벤트를 담은 그릇', 함수(데이터를 받아서 할일))
+                eventBus.$on('send-num', (count) => { 
+                    this.num = count 
                 })
             }
         })
