@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .shape { 
+            background:orangered;
+            width:200px;
+            height:200px;
+            border-radius:50%;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .trans-rotate {
+            animation:ani 3s 1 both;
+        }
+        @keyframes ani {
+            0% { transform:translateX(0px) rotate(0deg) }
+            100% { transform:translateX(500px) rotate(3turn) }
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        v-bind:class 객체와 data를 연결하여 true, false에 따라 style을 on/off 할 수 있음
+     -->
+    
+    <div id="app">
+        <h1 v-bind:class="{ shape:isOn, 'trans-rotate':isOn }">김은영</h1>
+        <h2 v-bind:style="{ color:'red', fontSize:'30px' }">그린컴퓨터학원</h2>
+        <button @click="changeStyle">클릭</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                isOn:false
+            },
+            methods:{
+                changeStyle(){
+                    this.isOn = !this.isOn
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

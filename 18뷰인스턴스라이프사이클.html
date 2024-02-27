@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        {{ name }}
+        <button @click="nameUpdate">업데이트</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                name : '김은영'
+            },
+            methods:{
+                nameUpdate(){
+                    this.name = '홍길동'
+                }
+            },
+            beforeCreate(){  // vue가 생성되기 전에 실행됨. data(x), DOM(x)
+                alert('뷰생성전 '+this.name)
+            },
+            created(){   // vue가 생성된 후 바로 실행됨. data(o), DOM(x)
+                alert('뷰생성됨 '+this.name)
+            },
+            beforeMount(){  // DOM에 인스턴스를 부착하기 전에 실행됨. DOM(x)
+                alert('마운트전')
+            },
+            mounted(){    // DOM에 인스턴스를 부착한 후 바로 실행됨. DOM(O)
+                console.log('마운트 완료')
+            },
+            beforeUpdate(){  // data가 수정되기 전에 실행됨
+                alert('업데이트전')
+            },
+            updated(){      // data를 수정하고 난 후 바로 실행됨
+                console.log('업데이트 완료'+this.name)
+            },
+            beforeDestroy(){  // vue가 화면에서 사라지기 전에 실행됨(메모리 누수를 방지하기 위해 이벤트를 삭제하거나, data를 초기화하는 일을 할 수 있음)
+                alert('죽기전')
+            },
+            destroyed(){  // vue가 화면에서 사라지고 난후 실행됨
+                alert('죽었음')
+            }
+        })
+    </script>
+</body>
+</html>

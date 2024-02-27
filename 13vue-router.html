@@ -5,37 +5,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
 </head>
 <body>
     
     <div id="app">
-        <h1>안녕하세요.</h1>
-        <hr>
-        <nav>
-            <router-link to="/main">메인 페이지 이동</router-link>
-            <router-link to="/sub">서브 페이지 이동</router-link>
-        </nav>
-        <router-view></router-view>        
+        <h1>뷰 라우터 예제</h1>
+        <p>
+            <router-link to="/home">메인 컴포넌트</router-link>
+            <router-link to="/login">로그인 컴포넌트</router-link>
+            <router-link to="/user">회원 컴포넌트</router-link>
+        </p>
+        <router-view></router-view>
     </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.5.3/vue-router.min.js" integrity="sha512-/QcUyef9r0LQzC+WtTNs+gJNacB+x20p1ZaPKSldF9Vu3m+uOmz0bBpPpsmHncv1ehuOCwnMXYydvl1KkW7Xow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
+        const Main = { 
+            template:'<div>메인페이지</div>'
+        }
+        const Login = { 
+            template:'<div>로그인페이지</div>'
+        }
+        const User = {
+            template:`
+            <div>
+                회원 페이지
+                <router-link to="/user/posts">user posts</router-link>
+                <router-link to="/user/profile">user profile</router-link>
+                <router-view></router-view>
+            </div>`
+        }
+
+        const UserProfile = { template:'<p>User Profile Component</p>'}
+        const UserPosts = { template:'<p>User Posts Component</p>'}
 
         const router = new VueRouter({
-            routes : [
-                { path:'/main',
-                  component : { template:`<h2>메인페이지입니다.</h2>` } },
-                { path:'/sub',
-                  component : { template:`<h2>서브페이지입니다.</h2>` } }
-            ]
+                mode:'history',   // 'history'는 라우터 url의 #(해쉬값)을 없앰
+                routes:[
+                    { path:'/home',  name:'home', component:Main },
+                    { path:'/login',  name:'login', component:Login },
+                    { path:'/user',  name:'user', component:User,
+                        children:[
+                            { path:'posts', component:UserPosts },
+                            { path:'profile', component:UserProfile }
+                        ]
+                    },
+                ]
         })
-
 
         new Vue({
             el:'#app',
-            router
+            router:router
         })
+
     </script>
 
 

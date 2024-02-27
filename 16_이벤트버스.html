@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        부모-자식관계가 아닌
+        같은 레벨끼리(형제) 또는 관계없는 컴포넌트끼리의 통신은 이벤트 버스를 활용함
+     -->
+
+     <div id="app1">
+        <p>송신 컴포넌트</p>
+        <p>송신데이터 : {{ count }}</p>
+        <p><button @click="send">송신</button></p>
+     </div>
+
+     <div id="app2">
+        <p>수신 컴포넌트</p>
+        <p>수신데이터 : {{ num }} </p>
+     </div>
+
+     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+     <script>
+
+        const eventBus = new Vue({})
+
+        new Vue({
+            el:"#app1",
+            data:{
+                count:0
+            },
+            methods:{
+                send(){
+                    // eventBus.$emit('이벤트를 담는 그릇', 데이터)
+                    eventBus.$emit('send-num', ++this.count)
+                }
+            }
+        })
+
+        new Vue({
+            el:"#app2",
+            data:{
+                num:''
+            },
+            // methods:{
+            //     receive(count){
+            //         this.num = count
+            //     }
+            // },
+            created:function(){  // vue 인스턴스가 생성되자마자 실행되는 함수
+                // eventBus.$on('이벤트를 담은 그릇', 데이터를 받아서 할일)
+                eventBus.$on('send-num', (count)=>{
+                   this.num = count
+                })
+            }
+        })
+     </script>
+
+
+</body>
+</html>

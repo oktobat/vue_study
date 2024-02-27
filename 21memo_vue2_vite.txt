@@ -1,4 +1,5 @@
-Vue2에서 vue-cli 대신 Vite 사용하기
+Vue2에서 vue-cli 대신 Vite 사용하기 
+참고사이트 : https://analogcode.tistory.com/39
 1. 프로젝트 폴더를 생성할 위치 선정
 2. npm create vite@latest
 3. Project name : todo-vuex
