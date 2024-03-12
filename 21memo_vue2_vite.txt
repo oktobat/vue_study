@@ -22,4 +22,4 @@ Vue2에서 vue-cli 대신 Vite 사용하기
 12. 기존 todo 프로젝트에서 작성했던 파일 복사하고 추가로 설치했던 npm 설치
     npm i --save @fortawesome/fontawesome-free
     npm i sass-loader sass -D
-13. npm i --save  vuex@3.6.2
+13. npm i --save vuex@3.6.2

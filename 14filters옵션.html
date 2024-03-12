@@ -21,6 +21,7 @@
     <div id="app">
         <input type="text" v-model="message">
         <p>{{ message | capitalize }}</p>
+        <p>{{ num | formatPrice }}</p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
@@ -28,13 +29,29 @@
         new Vue({
             el:'#app',
             data:{
-                message:''
+                message:'',
+                num : 123456789
             },
             filters:{
                 capitalize(value){
                     if (!value) return ''
                     value = value.toString()
                     return value.charAt(0).toUpperCase() + value.slice(1)
+                },
+                formatPrice(price) {	
+                    if (!parseInt(price)) { return ""; }	
+                    if (price > 99999) {	
+                        var priceString = (price / 100).toFixed(2);	
+                        var priceArray = priceString.split("").reverse();	
+                        var index = 3;	
+                        while (priceArray.length > index + 3) {	
+                        priceArray.splice(index+3, 0, ",");	
+                        index += 4;	
+                        }	
+                        return "$" + priceArray.reverse().join("");	
+                    } else {
+                        return "$" + (price / 100).toFixed(2);	
+                    }
                 }
             }
         })

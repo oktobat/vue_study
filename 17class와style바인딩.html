@@ -30,9 +30,9 @@
      -->
     
     <div id="app">
-        <h1 v-bind:class="{ shape:isOn, 'trans-rotate':isOn }">김은영</h1>
-        <h2 v-bind:style="{ color:'red', fontSize:'30px' }">그린컴퓨터학원</h2>
-        <button @click="changeStyle">클릭</button>
+        <h1 :class="{ shape:isOn, 'trans-rotate':isOn }">김은영</h1>
+        <h2 :style="{ color:color, fontSize:fontSize }">그린컴퓨터학원</h2>
+        <button @click="changeStyle" :style="{ color:color }">클릭</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -40,7 +40,9 @@
         new Vue({
             el:'#app',
             data:{
-                isOn:false
+                isOn:false,
+                color : 'blue',
+                fontSize : '50px'
             },
             methods:{
                 changeStyle(){
